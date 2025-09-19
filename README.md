@@ -8,4 +8,5 @@ Con nuestras modificaciones, se agregaron funciones al juego base de freegames.
 Primera modificación: Los fantasmas ahora persiguen al jugador en lugar de moverse aleatoriamente.
 Segunda modificación: Se aumentó la velocidad del juego, tanto fantasmas como pacman.
 Tercera modificación: Se alteró el laberinto.
+Cuarta modificación: Se duplicó la velocidad del juego
 No se agregaron botones.

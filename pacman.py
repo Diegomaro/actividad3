@@ -26,6 +26,7 @@ ghosts = [
     [vector(100, -160), vector(-10, 0)],
 ]
 # fmt: off
+"""Se cambió la estructura del laberinto arbitrariamente"""
 tiles = [
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0,
@@ -138,12 +139,13 @@ def move():
             """ Si encuentra una pared, se busca una nueva dirección """
             """ Se utilizo el teorema de pitágoras para calcular
                 la distancia de la diagonal entre los dos puntos. """
-            disUp = (pacman.x - (point.x))**2 + (pacman.y - (point.y + 5))**2
-            disDown = (pacman.x - (point.x))**2 + (pacman.y - (point.y - 5))**2
-            disLeft = (pacman.x - (point.x - 5))**2 + (pacman.y - (point.y))**2
-            disRight = (pacman.x - (point.x + 5))**2 + (pacman.y - (point.y))**2
+            disUp = (pacman.x - (point.x))**2 + (pacman.y - (point.y + 10))**2
+            disDown = (pacman.x - (point.x))**2 + (pacman.y - (point.y - 10))**2
+            disLeft = (pacman.x - (point.x - 10))**2 + (pacman.y - (point.y))**2
+            disRight = (pacman.x - (point.x + 10))**2 + (pacman.y - (point.y))**2
             plan = vector(0,0)
             selection = 10000000
+            """Se cambió la velocidad de los fantasmas"""
             if (disUp < selection):
                 plan.x = 0
                 plan.y = 10
@@ -182,6 +184,7 @@ def move():
         if abs(pacman - point) < 20:
             return
 
+    """Se redujo a la mitad los milisegundos entre cada respuesta"""
     ontimer(move, 50)
 
 
@@ -199,6 +202,7 @@ writer.goto(160, 160)
 writer.color('white')
 writer.write(state['score'])
 listen()
+"""Se cambió la velocidad del jugador"""
 onkey(lambda: change(10, 0), 'Right')
 onkey(lambda: change(-10, 0), 'Left')
 onkey(lambda: change(0, 10), 'Up')
