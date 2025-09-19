@@ -129,10 +129,15 @@ def move():
     up()
     goto(pacman.x + 10, pacman.y + 10)
     dot(20, 'yellow')
+    """ Se mejoró la inteligencia del fantasma haciendo que revise las 4 posibles direcciones,
+        y elija la acerca al fantasma más a pacman """
     for point, course in ghosts:
         if valid(point + course):
             point.move(course)
         else:
+            """ Si encuentra una pared, se busca una nueva dirección """
+            """ Se utilizo el teorema de pitágoras para calcular
+                la distancia de la diagonal entre los dos puntos. """
             disUp = (pacman.x - (point.x))**2 + (pacman.y - (point.y + 5))**2
             disDown = (pacman.x - (point.x))**2 + (pacman.y - (point.y - 5))**2
             disLeft = (pacman.x - (point.x - 5))**2 + (pacman.y - (point.y))**2
