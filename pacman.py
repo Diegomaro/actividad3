@@ -129,7 +129,6 @@ def move():
     up()
     goto(pacman.x + 10, pacman.y + 10)
     dot(20, 'yellow')
-
     for point, course in ghosts:
         if valid(point + course):
             point.move(course)
@@ -140,10 +139,40 @@ def move():
                 vector(0, 5),
                 vector(0, -5),
             ]
-            plan = choice(options)
-            course.x = plan.x
-            course.y = plan.y
-
+            disUp = (pacman.x - (point.x))**2 + (pacman.y - (point.y + 5))**2
+            disDown = (pacman.x - (point.x))**2 + (pacman.y - (point.y - 5))**2
+            disLeft = (pacman.x - (point.x - 5))**2 + (pacman.y - (point.y))**2
+            disRight = (pacman.x - (point.x + 5))**2 + (pacman.y - (point.y))**2
+            plan = vector(0,0)
+            selection = 10000000
+            if (disUp < selection):
+                plan.x = 0
+                plan.y = 5
+                if (valid(point + plan)):
+                    course.x = plan.x
+                    course.y = plan.y
+                    selection = disUp
+            if (disDown < selection):
+                plan.x = 0
+                plan.y = -5
+                if (valid(point + plan)):
+                    course.x = plan.x
+                    course.y = plan.y
+                    selection = disDown
+            if (disLeft < selection):
+                plan.x = -5
+                plan.y = 0
+                if (valid(point + plan)):
+                    course.x = plan.x
+                    course.y = plan.y
+                    selection = disLeft
+            if (disRight < selection):
+                plan.x = 5
+                plan.y = 0
+                if (valid(point + plan)):
+                    course.x = plan.x
+                    course.y = plan.y
+                    selection = disRight
         up()
         goto(point.x + 10, point.y + 10)
         dot(20, 'red')
